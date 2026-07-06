@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { navItems, resumeHref } from '@data/navigation';
+import { navItems, resumeDownloadName, resumeHref } from '@data/navigation';
 import './Navbar.css';
 
 const SCROLLED_THRESHOLD = 24;
@@ -97,6 +97,12 @@ function Navbar() {
     window.location.hash = item.id;
   }
 
+  function handleResumeClick(event) {
+    if (!resumeHref) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <motion.header
       className={`navbar ${isScrolled ? 'navbar--scrolled glass' : ''}`}
@@ -129,10 +135,11 @@ function Navbar() {
         </div>
 
         <a
+          aria-disabled={!resumeHref}
           className="navbar__resume btn btn-primary"
           href={resumeHref}
-          target="_blank"
-          rel="noreferrer"
+          download={resumeDownloadName}
+          onClick={handleResumeClick}
         >
           Resume
         </a>
@@ -182,11 +189,12 @@ function Navbar() {
               ))}
               <motion.a
                 animate={{ y: 0, opacity: 1 }}
+                aria-disabled={!resumeHref}
                 className="mobile-nav__resume btn btn-primary"
                 href={resumeHref}
+                download={resumeDownloadName}
                 initial={{ y: 18, opacity: 0 }}
-                rel="noreferrer"
-                target="_blank"
+                onClick={handleResumeClick}
                 transition={{ delay: 0.26, duration: 0.32 }}
               >
                 Resume

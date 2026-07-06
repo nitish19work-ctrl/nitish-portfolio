@@ -9,7 +9,7 @@ import {
   FiMapPin,
   FiSend,
 } from 'react-icons/fi';
-import { resumeHref } from '@data/navigation';
+import { resumeDownloadName, resumeHref } from '@data/navigation';
 import './Contact.css';
 
 const socialLinks = [
@@ -81,6 +81,12 @@ function Contact() {
     );
 
     window.location.href = `mailto:nitish19work@gmail.com?subject=${subject}&body=${body}`;
+  }
+
+  function handleResumeClick(event) {
+    if (!resumeHref) {
+      event.preventDefault();
+    }
   }
 
   return (
@@ -264,7 +270,13 @@ function Contact() {
                 <p>Grab my resume or explore my GitHub to see what I&apos;m building.</p>
               </div>
               <div className="contact-cta__actions">
-                <a className="btn btn-primary" href={resumeHref} download>
+                <a
+                  aria-disabled={!resumeHref}
+                  className="btn btn-primary"
+                  href={resumeHref}
+                  download={resumeDownloadName}
+                  onClick={handleResumeClick}
+                >
                   <FiDownload aria-hidden="true" />
                   Download Resume
                 </a>

@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useTransform,
 } from 'framer-motion';
-import { resumeHref } from '@data/navigation';
+import { resumeDownloadName, resumeHref } from '@data/navigation';
 import './About.css';
 
 const techChips = ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Tailwind'];
@@ -97,6 +97,12 @@ function About() {
     }
   }
 
+  function handleResumeClick(event) {
+    if (!resumeHref) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <section className="about section-spacing" id="about" aria-labelledby="about-title">
       <div className="about__glow about__glow--one" aria-hidden="true" />
@@ -183,7 +189,13 @@ function About() {
           </motion.div>
 
           <motion.div className="about__actions" variants={reveal}>
-            <a className="btn btn-primary about__button" href={resumeHref} download>
+            <a
+              aria-disabled={!resumeHref}
+              className="btn btn-primary about__button"
+              href={resumeHref}
+              download={resumeDownloadName}
+              onClick={handleResumeClick}
+            >
               Download Resume
             </a>
             <a className="btn btn-ghost about__button" href="#contact" onClick={scrollToContact}>

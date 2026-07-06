@@ -7,4 +7,14 @@ export const navItems = [
   { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 
-export const resumeHref = '/resume.pdf';
+const resumeModules = import.meta.glob('../assets/resume/resume.pdf', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
+
+const resumeAsset = resumeModules['../assets/resume/resume.pdf'];
+
+// TODO: Add src/assets/resume/resume.pdf so resume buttons download the actual PDF.
+export const resumeHref = typeof resumeAsset === 'string' ? resumeAsset : undefined;
+export const resumeDownloadName = 'Nitish_Pal_Resume.pdf';
