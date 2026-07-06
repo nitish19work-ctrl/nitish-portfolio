@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import 'tailwindcss';
+@import './styles/reset.css';
+@import './styles/theme.css';
+
+html {
+  color-scheme: dark;
+  scroll-behavior: auto;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.16), transparent 34rem),
+    radial-gradient(circle at 85% 10%, rgba(6, 182, 212, 0.12), transparent 30rem),
+    var(--color-background);
+  background-attachment: fixed;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+main {
+  width: min(100%, var(--layout-max-width));
+  margin-inline: auto;
+  padding-inline: var(--layout-padding);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}

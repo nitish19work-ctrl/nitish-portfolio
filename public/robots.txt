@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nitish19work-ctrl.github.io/nitish-portfolio/sitemap.xml
